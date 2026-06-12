@@ -47,12 +47,16 @@
   .btn{font:inherit; font-size:11.5px; padding:5px 11px; border:1px solid var(--line); background:#fff; border-radius:7px; cursor:pointer; color:var(--navy)}
   .btn:hover{background:#f0ece2}
 
-  .mxscroll{overflow-x:auto; border-radius:10px}
+  .mxscroll{overflow:visible; border-radius:10px}
+  @media(max-width:1100px){.mxscroll{overflow-x:auto}}
+  tr.hrow1 th{position:sticky; top:0; z-index:31}
+  tr.hrow2 th{position:sticky; top:29px; z-index:30; box-shadow:0 2px 4px rgba(7,41,66,.15)}
+  tr.hrow1 th.rowlbl{z-index:32}
   table.mx{width:auto; border-collapse:collapse; background:var(--card); border:1px solid var(--line)}
   /* group header row */
   table.mx th.rowlbl{background:var(--navy); color:#fff; text-align:left; padding:9px 14px; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; vertical-align:bottom}
-  table.mx th.archgroup{background:var(--arch); color:#fff; font-size:10px; text-transform:uppercase; letter-spacing:.6px; padding:6px 4px; text-align:center; border-left:2px solid #fff}
-  table.mx th.teamgroup{background:var(--navy); color:#fff; font-size:10px; text-transform:uppercase; letter-spacing:.6px; padding:6px 4px; text-align:center; border-left:2px solid #fff}
+  table.mx th.archgroup{height:29px; background:var(--arch); color:#fff; font-size:10px; text-transform:uppercase; letter-spacing:.6px; padding:6px 4px; text-align:center; border-left:2px solid #fff}
+  table.mx th.teamgroup{height:29px; background:var(--navy); color:#fff; font-size:10px; text-transform:uppercase; letter-spacing:.6px; padding:6px 4px; text-align:center; border-left:2px solid #fff}
   table.mx th.archead{background:var(--arch); color:#fff; width:54px; font-size:10px; padding:7px 3px; text-align:center; cursor:pointer; vertical-align:bottom; border-left:1px solid #2c807e}
   table.mx th.colhead{background:var(--navy); color:#fff; padding:9px 4px; font-size:11.5px; text-align:center; cursor:pointer; vertical-align:bottom; width:54px}
   table.mx th.colhead:first-of-type{border-left:2px solid #fff}
@@ -185,7 +189,7 @@
     <span class="grp"><b>Kritičnost:</b>
       <span><i class="cdot cred"></i>kritické</span>
       <span><i class="cdot corange"></i>důležité</span>
-      <span><i class="cdot cgreen"></i>podpůrné</span>
+      <span>prázdné = organizace nepotřebuje</span>
     </span>
     <span class="grp"><b>Drží:</b>
       <span><i class="hdot h2"></i>silně</span>
@@ -236,10 +240,10 @@ const ARCHES = [
   {id:'plna', short:'Plná', name:'Plná ambice', desc:'transformační motor – dnešní deklarovaná ambice',
     look:'Plnohodnotný think-tank s vlastní analýzou, komunikací i advokacií, a zároveň vehikl, který propojuje a sdružuje majitele firem s vysokou přidanou hodnotou v Česku i s podobnými organizacemi v zahraničí. Seniorní jádro, špičkové výstupy, přímý vliv na politiku i veřejnou debatu.',
     does:'Vlastní analýzy a policy návrhy · framuje a kontroluje výstupy · briefuje ministry · vede veřejnou debatu · propojuje a sdružuje majitele klíčových firem a napojuje je na zahraniční sítě.',
-    notdoes:'Nepřenechává obsah ani strategický rám dodavatelům a neslevuje z kvality kvůli rychlosti nebo dosahu.',
+    notdoes:'Není PR agenturou ani pasivním klubem: nevypouští výstupy bez vlastní analytické opory a obsah ani strategický rám nepřenechává dodavatelům.',
     examples:'European Round Table, Bruegel, Tony Blair Institute.'},
   {id:'klub', short:'Klub', name:'Byznys klub', desc:'síť a setkávání byznys lídrů',
-    look:'Síť byznys lídrů, kteří se potkávají, sdílejí a budují mezi sebou vztahy. Hodnotou je samo členství, prostor a pocit příslušnosti; vlastní výstup je minimální a provoz lehký.',
+    look:'Síť byznys lídrů, kteří se potkávají, sdílejí zkušenosti a budují mezi sebou vztahy. Hodnotou je členství samo: prostor, příslušnost a dveře, které se jinde neotevřou; vlastní výstup je minimální a provoz lehký.',
     does:'Pořádá setkání, večeře a konference, spravuje členství a příspěvky, propojuje lidi a drží prestiž a značku prostoru.',
     notdoes:'Nedělá vlastní hloubkovou analýzu, nepíše policy memo, nebriefuje ministry pod svou značkou a nenese veřejné pozice.',
     examples:'YPO, Aspen Young Leaders, byznysové komory a kluby.'},
@@ -249,7 +253,7 @@ const ARCHES = [
     notdoes:'Nedělá přímou advokacii u rozhodovatelů · nedělá hlubokou vlastní analýzu nad rámec opory obsahu.',
     examples:'Dobré ráno, Česko, Díky že můžem, Solvo Institut, Projekt Index Prosperity.'},
   {id:'infl', short:'Influence', name:'Influence vehikl', desc:'komunikace + vliv: PR, kampaně, formování názoru',
-    look:'Komunikace posunutá o stupeň výš k vlivu. Cílem je posouvat názor, veřejný i elitní, přes PR, kampaně a narativ; opírá se o silnou kampaňovou a kreativní kapacitu.',
+    look:'Komunikace zapřažená do vlivu: cílem není dosah sám o sobě, ale posun názoru, veřejného i elitního. Pracuje přes PR, kampaně a narativ a opírá se o silnou kampaňovou a kreativní kapacitu.',
     does:'Staví narativ a kampaně, měří a optimalizuje jejich dopad, pracuje s médii i influencery, řeší reputaci a krize a vyrábí video a kreativu.',
     notdoes:'Nemusí mít hloubkovou interní analýzu, nedělá nutně přímý lobbing u úředníků a nestaví se do role neutrálního analytika.',
     examples:'Mobilizační kampaně typu Milion chvilek, PR-driven advokační kampaně, Evropa v datech.'},
@@ -262,18 +266,18 @@ const ARCHES = [
 const MEMBERS = [
   {id:'eliska', name:'Eliška', tag:'ředitelka',         role:'Výkonná ředitelka', shaded:true},
   {id:'honza',  name:'Honza',  tag:'obsah',             role:'Ředitel obsahu a strategie'},
-  {id:'adam',   name:'Adam',   tag:'coms',        role:'Vedoucí komunikace'},
+  {id:'adam',   name:'Adam',   tag:'comms',        role:'Vedoucí komunikace'},
   {id:'lucka',  name:'Lucka',  tag:'analýza',           role:'Seniorní analytička'},
   {id:'karel',  name:'Karel',  tag:'advokacie',         role:'Advokacie', shaded:true},
   {id:'matej',  name:'Matěj',  tag:'SoMe',              role:'Komunikace – sociální média', shaded:true},
   {id:'bara',   name:'Bára',   tag:'asistentka',        role:'Asistentka vedení', shaded:true},
   {id:'pavel',  name:'Pavel',  tag:'podpora advokacie', role:'Podpora advokacie', shaded:true},
-  {id:'nikola', name:'Nikola', tag:'podpora coms',role:'Podpora komunikace', shaded:true},
+  {id:'nikola', name:'Nikola', tag:'podpora comms',role:'Podpora komunikace', shaded:true},
 ];
 /* cr = [Plná,Klub,Komun,Influence,Advok] · h = [Eliška,Honza,Adam,Lucka,Karel,Bára,Pavel,Nikola] */
 const CLUSTERS = [
   {id:'strategy', name:'Strategie, agenda a obsahový rám', leaves:[
-    {id:'s_strat', n:'Návrh strategie spolku', cr:'rooor', h:'000000000',
+    {id:'s_strat', n:'Návrh strategie spolku', cr:'rooor', h:'110000001',
       w:'Schopnost identifikovat dlouhodobě klíčové oblasti, které pomohou spolku doručit dopad, interně i externě, a determinovat potřebné výstupy a zdroje.',
       y:'Strategii potřebujeme, abychom dosáhli změn, které jsme si předsevzali a na jejíž vizi jsme získali členskou základnu a donory.',
       x:'2ET přešlapuje na místě a pouze reaguje na požadavky nejhlasitějších členů. Bez strategie nebudeme schopní zaměstnat kvalitní talent.'},
@@ -319,7 +323,7 @@ const CLUSTERS = [
       w:'Doménová analýza vzdělávání a trhu práce: dovednosti, nabídka a poptávka práce, vazba školství na ekonomiku.',
       y:'Talent a vzdělávání jsou kritickým jádrem transformace; bez téhle domény nám chybí klíčový kus skládačky.',
       x:'K tématu vzdělávání a trhu práce mluvíme povrchně, bez vlastní opory. Návrhy neobstojí před lidmi, kteří v systému reálně pracují.'},
-    {id:'a_kap', n:'Analýza kapitálového trhu', cr:'rgoor', h:'000000000',
+    {id:'a_kap', n:'Analýza kapitálového trhu', cr:'rgoor', h:'010100000',
       w:'Doménová analýza fungování kapitálu: bankovní systém, PE/VC, penzijní fondy, burza, evropský kapitálový trh, incentivy investorů.',
       y:'Kapitál je kritickým jádrem transformace; bez téhle domény nám chybí klíčový kus skládačky.',
       x:'K tématu kapitálového trhu mluvíme povrchně, bez vlastní opory.'},
@@ -327,7 +331,7 @@ const CLUSTERS = [
       w:'Dohledání zdrojů, dat a zahraniční praxe, ze kterých se staví každý vážnější výstup.',
       y:'Je to surovina pro každé memo i briefing; bez dobré rešerše stojí výstup na dojmech místo na faktech.',
       x:'Tvrzení se opírají o pocity, protistrana je snadno vyvrátí a 2ET vypadá nepoctivě nebo amatérsky. Vymýšlíme řešení nekvalitně a na koleni, ačkoli svět je možná už dávno nalezl.'},
-    {id:'a_int', n:'Strukturované interviews', cr:'rgoor', h:'000000000',
+    {id:'a_int', n:'Strukturované interviews', cr:'rgoor', h:'120200001',
       w:'Dohledání informací a porozumění situaci skrz strukturovaná interviews s klíčovými stakeholdery v byznysu, státu i neziskovém sektoru.',
       y:'Většina témat, na kterých 2ET pracuje, není popsaná a informace o nich nejsou dostupné z veřejných zdrojů. Systém funguje neformálně, zahraniční studie nejsou aplikovatelné, české neexistují.',
       x:'Tvrzení nedávají smysl insiderům tématu a 2ET je vnímaná jako naivní a nekredibilní.'},
@@ -634,7 +638,7 @@ const PROFILES = {
       <li>Rozvíjet myšlenkovou kapacitu týmu místo přepisování výstupů</li>
       <li>Reprezentovat 2ET jako odborný a veřejný hlas pod svým jménem (op-edy, konference)</li>
       <li>Definovat, jak měříme dopad obsahu a advokacie</li>
-      <li>Institucionalizovat procesy a šablony napříč 2ET (mandát s Eliškou 4. 6.)</li>
+      <li>Institucionalizovat procesy a šablony napříč 2ET (dohodnutý interní mandát)</li>
       <li>Spoluutvářet vztah se Správní radou na obsahové úrovni</li>
     </ul></div>
 
@@ -732,7 +736,7 @@ const PROFILES = {
 
   <div class="pnl uniq"><h3 class="sec">Unikátní v organizaci</h3>
     <ul>
-      <li><b>Profesní síť mezi ekonomy a ekonomickými novináři</b> – při zrušení Skvělého Česka šla důvěra přímo přes ni (Dudák i Nýdrle se ptali jí) a půl roku konzultací s ekonomy stálo na její síti. Nikdo jiný ji nemá.</li>
+      <li><b>Profesní síť mezi ekonomy a ekonomickými novináři</b> – vztahový kapitál, který v týmu drží jen ona; důvěra ekonomické komunity jde přímo přes ni. Nikdo jiný ji nemá.</li>
       <li><b>Seniorní analytická kredibilita ve své doméně</b> – v týmu je nejblíž profilu seniorního analytického partnera pro myšlení, který organizaci chybí.</li>
       <li><b>Realistický analytický zástup Honzy</b> – podle vyplněných kapacit jediná, kdo se na analytice blíží jeho úrovni (makro, modelování, AI, due diligence).</li>
     </ul></div>
@@ -788,7 +792,7 @@ function buildMatrix(){
   const archGroup = showArch
     ? `<th class="archgroup" colspan="${ARCHES.length}" onclick="toggleArch()" title="Sbalit typy organizace">▾ Pro jaký typ organizace je kritická</th>`
     : `<th class="archgroup collapsed" colspan="1" onclick="toggleArch()" title="Rozbalit typy organizace">▸ Krit.</th>`;
-  let html = '<tr>'
+  let html = '<tr class="hrow1">'
     + '<th class="rowlbl" rowspan="2">Kompetence</th>'
     + archGroup
     + `<th class="teamgroup" colspan="${MEMBERS.length}">Kdo ji drží</th>`
@@ -796,7 +800,7 @@ function buildMatrix(){
   const archHeads = showArch
     ? ARCHES.map(a=>`<th class="archead" onclick="openArch('${a.id}')" title="${a.name} – ${a.desc}">${a.short}</th>`).join('')
     : `<th class="archead collapsed" onclick="toggleArch()" title="Rozbalit · zobrazena Plná ambice">Plná</th>`;
-  html += '<tr>'
+  html += '<tr class="hrow2">'
     + archHeads
     + MEMBERS.map(m=>`<th class="colhead${m.shaded?' shaded':''}" onclick="openPerson('${m.id}')">${m.name}<small>${m.tag}</small><span class="open">${PROFILES[m.id]?'profil ▸':'–'}</span></th>`).join('')
     + '</tr>';
@@ -807,8 +811,8 @@ function buildMatrix(){
       const sm = soloMark(lf);
       const noStrong = !lf.h.includes('2');
       const archCells = showArch
-        ? ARCHES.map((a,i)=>`<td class="acell" title="${a.short}: ${CRITNAME[lf.cr[i]]}"><span class="cdot ${CRITCLS[lf.cr[i]]}"></span></td>`).join('')
-        : `<td class="acell" title="Plná: ${CRITNAME[lf.cr[0]]}"><span class="cdot ${CRITCLS[lf.cr[0]]}"></span></td>`;
+        ? ARCHES.map((a,i)=>`<td class="acell" title="${a.short}: ${CRITNAME[lf.cr[i]]}">${lf.cr[i]==='g'?'':'<span class="cdot '+CRITCLS[lf.cr[i]]+'"></span>'}</td>`).join('')
+        : `<td class="acell" title="Plná: ${CRITNAME[lf.cr[0]]}">${lf.cr[0]==='g'?'':'<span class="cdot '+CRITCLS[lf.cr[0]]+'"></span>'}</td>`;
       html += `<tr class="leaf${isGap(lf.h)?' gap':''}" data-cl="${cl.id}">`
         + `<td class="lbl${noStrong?' nolvl2':''}" onclick="openCap('${cl.id}','${lf.id}')">${lf.n}<span class="info">ⓘ</span></td>`
         + archCells
